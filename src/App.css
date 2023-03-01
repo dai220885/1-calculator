@@ -1,0 +1,103 @@
+.App {
+  background-color: #605e5e;
+  width: 250px;
+  height: 150px;
+  border: 3px solid #70E4FB;
+  border-radius: 5px;
+  padding: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.monitor {
+  /*background-color: #605e5e;*/
+  background-color: #70E4FB;
+  width: 230px;
+  height: 50px;
+  border: 3px solid #70E4FB;
+  border-radius: 5px;
+  padding: 3px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-family: 'Montserrat', serif;
+  font-style: normal;
+  font-size: 40px;
+}
+.red {
+  color: red;
+  text-align: center;
+  font-size: 45px;
+  /*height: 100%;*/
+}
+.value {
+  /*color: greenyellow;*/
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.buttons {
+  background-color: #605e5e;
+  width: 230px;
+  height: 50px;
+  border: 3px solid #70E4FB;
+  border-radius: 5px;
+  padding: 3px;
+  /*display: inline-block;*/
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+
+
+}
+
+.button {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 5px 24px 5px 24px;
+  margin: 10px;
+  background-color: #70E4FB;
+  border-radius: 5px;
+  border-color: #70E4FB;
+}
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
