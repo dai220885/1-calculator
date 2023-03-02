@@ -16,7 +16,7 @@ export const Button = (props:ButtonPropsType) => {
   }
   return(
       <button
-          className={'button'}
+          className={props.classes? props.classes :'button'}
           disabled={props.isDisabled}
           onClick={onClickButtonHandler}>
         {props.name}
