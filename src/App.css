@@ -7,6 +7,7 @@
   padding: 8px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 5px;
 }
 
 
@@ -18,14 +19,46 @@
   border: 3px solid #70E4FB;
   border-radius: 5px;
   padding: 3px;
-  margin-top: 5px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 5px auto 5px auto;
+  /*margin-top: 5px;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  /*margin-bottom: 5px;*/
   text-align: center;
   font-family: 'Montserrat', serif;
   font-style: normal;
   font-size: 40px;
 }
+
+.settingMonitor {
+  /*background-color: #605e5e;*/
+  background-color: #70E4FB;
+  width: 230px;
+  height: 50px;
+  border: 3px solid #70E4FB;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 5px auto 5px auto;
+  /*margin-top: 5px;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  /*margin-bottom: 5px;*/
+  text-align: center;
+  font-family: 'Montserrat', serif;
+  font-style: normal;
+  font-size: 10px;
+}
+.settings {
+  /*border: 3px solid #b20322;*/
+  /*border-radius: 5px;*/
+  display: grid;
+  grid-template-columns: 50% 50%;
+  /*justify-items: start;*/
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
 .red {
   color: red;
   text-align: center;
@@ -39,6 +72,11 @@
   margin-bottom: auto;
 }
 
+.settingsValue {
+  display: grid;
+  grid-template-rows: 30px 30px;
+}
+
 .buttons {
   background-color: #605e5e;
   width: 230px;
@@ -47,23 +85,43 @@
   border-radius: 5px;
   padding: 3px;
   /*display: inline-block;*/
-  margin-top: 15px;
+  /*margin-top: 15px;*/
   margin-left: auto;
   margin-right: auto;
-
-
+  /*align-items: center;*/
+}
+.buttonsMain{
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
 }
 
+.buttonsSet {
+  display: grid;
+  grid-template-columns: 100%;
+  justify-items: center;
+  /*align-items: center;*/
+}
+
+
+.set{
+  /*width: 70px;*/
+  /*height: 30px;*/
+  margin-left: auto;
+  margin-right: auto;
+}
 .button {
   font-family: 'Montserrat';
+  width: 70px;
+  height: 37px;
   font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  padding: 5px 24px 5px 24px;
-  margin: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  /*padding: 5px 24px 5px 24px;*/
+  margin: 5px;
   background-color: #70E4FB;
   border-radius: 5px;
   border-color: #70E4FB;
+
 }
 
 
