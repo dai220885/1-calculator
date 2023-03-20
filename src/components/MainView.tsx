@@ -14,7 +14,6 @@ type MainViewPropsType = {
 
 // export const Button = ({name, buttonCallBack, isDisabled, classes}:ButtonPropsType) => {}
 
-
 export const MainView = (props: MainViewPropsType) => {
     return (
         <div className={'App'}>
@@ -22,11 +21,10 @@ export const MainView = (props: MainViewPropsType) => {
                 <Monitor count={props.count}/>
             </div>
             <div className={'buttons buttonsMain'}>
-                <Button name={'INC'} buttonCallBack={props.incrementCount} isDisabled={props.isDisableInc}/>
-                <Button name={'RESET'} buttonCallBack={props.resetCount} isDisabled={props.isDisableReset}/>
-                <Button name={'SET'} buttonCallBack={props.showSettings}/>
+                <Button name={'INC'} onClick={props.incrementCount} disabled={props.isDisableInc}/>
+                <Button name={'RESET'} onClick={props.resetCount} disabled={props.isDisableReset}/>
+                <Button name={'SET'} onClick={props.showSettings}/>
             </div>
         </div>
     )
-
 }

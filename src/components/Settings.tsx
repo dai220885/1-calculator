@@ -9,8 +9,10 @@ type SettingsPropsType = {
     setMaxValueCallBack:(newMaxValue: number)=>void
     setStartValueCallBack:(newStartValue: number)=>void
     hideSettings: ()=>void
+    isDisableSet: boolean
+    isStartValueCorrect: boolean
+    isMaxValueCorrect: boolean
 }
-
 export const Settings = (props: SettingsPropsType) => {
     return (
         <div className={'App'}>
@@ -19,13 +21,20 @@ export const Settings = (props: SettingsPropsType) => {
                     startValue={props.startValue}
                     maxValue={props.maxValue}
                     setMaxValue={props.setMaxValueCallBack}
-                    setStartValue={props.setStartValueCallBack}/>
+                    setStartValue={props.setStartValueCallBack}
+                    isStartValueCorrect={props.isStartValueCorrect}
+                    isMaxValueCorrect={props.isMaxValueCorrect}
+                />
             </div>
             <div className={'buttons buttonsSet'}>
                 <div className={'set'}>
-                    <Button name={'SET'} buttonCallBack={props.hideSettings} classes={'button set'}/>
+                    <Button
+                        name={'SET'}
+                        onClick={props.hideSettings}
+                        className={'button set'}
+                        disabled={props.isDisableSet}
+                    />
                 </div>
-
             </div>
         </div>
     )

@@ -2,25 +2,23 @@ import React from "react";
 
 type ButtonPropsType = {
   name: string;
-  buttonCallBack: ()=>void;
-  isDisabled?: boolean
-  classes?: string
+  onClick: ()=>void;
+  disabled?: boolean
+  className?: string
 }
 
 // export const Button = ({name, buttonCallBack, isDisabled, classes}:ButtonPropsType) => {}
 
-
 export const Button = (props:ButtonPropsType) => {
-  const onClickButtonHandler = () => {
-    props.buttonCallBack()
-  }
+  const onClickButtonHandler = () => props.onClick()
+
   return(
       <button
-          className={props.classes? props.classes :'button'}
-          disabled={props.isDisabled}
-          onClick={onClickButtonHandler}>
+          className={props.className? props.className :'button'}
+          disabled={props.disabled}
+          onClick={onClickButtonHandler}
+      >
         {props.name}
       </button>
   )
-
 }

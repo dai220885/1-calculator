@@ -15,15 +15,22 @@ function App() {
     const [startValue, setStartValue] = useState(firstStartValue) //стейт для хранения начального значения счетчика
     const [maxValue, setMaxValue] = useState<number>(firstMaxValue)//стейт для хранения максимального значения счетчика
     const [count, setCount] = useState<number>(startValue)//стейт для хранения текущего значения счетчика
-    //переменные, которые дизейблят/раздизейбливают кнопки
+
+    //переменные, которые дизейблят/раздизейбливают кнопки и проверяют корректность введенных значений startValue и maxValue
     const isDisableInc: boolean = count >= maxValue //!!!!! исправить на ===
     const isDisableReset: boolean = count === startValue
+    const isStartValueCorrect: boolean = (maxValue > startValue) && (startValue >= 0)
+    const isMaxValueCorrect: boolean = (maxValue > startValue)
+    const isDisableSet: boolean = !isStartValueCorrect || !isMaxValueCorrect
+
     //функции, которые изменяют значения стейта, показывающего, скрывающего меню настроек
     const showSettings = () => setIsSettingsVisible(true)
     const hideSettings = () => setIsSettingsVisible(false)
 
     //используем useEffect и localStorage, чтобы после перезагрузки странички сохранялось значение счетчика
-    useEffect(() => {getFromLocalStorageHandler()}, []) //единожды, только при первой отрисовке странички, забираем из localStorage хранящиеся там значения и помещаем их в соответствующие useState-ы в качестве инициализационных значений
+    useEffect(() => {
+        getFromLocalStorageHandler()
+    }, []) //единожды, только при первой отрисовке странички, забираем из localStorage хранящиеся там значения и помещаем их в соответствующие useState-ы в качестве инициализационных значений
 
     useEffect(() => setToLocalStorageHandler(), [count, startValue, maxValue])//при каждом изменении count, startValue или maxValue (в соответствующих useState-ах), помещаем в localStorage эти значения (count, startValue, maxValue)
 
@@ -49,14 +56,9 @@ function App() {
         //     //return newCount //если убрать setCount(newCount), а просто возвращать newCount, то эту функцию можно сразу поместить в useState в качестве инициализационного значения
         // }
     }
-    const setMaxValueCallBack = (newMaxValue: number) => {
-        setMaxValue(newMaxValue)
-    }
+    const setMaxValueCallBack = (newMaxValue: number) => setMaxValue(newMaxValue)
 
-    const setStartValueCallBack = (newStartValue: number) => {
-        setStartValue(newStartValue)
-    }
-
+    const setStartValueCallBack = (newStartValue: number) => setStartValue(newStartValue)
 
     const incrementCount = () => {
         if (count < maxValue) {
@@ -66,37 +68,31 @@ function App() {
         }
     }
 
-    const resetCount = () => {
-        setCount(startValue)
-    }
-
-
+    const resetCount = () => setCount(startValue)
 
     return (
-        <>
-            {!isSettingVisible &&
-                <MainView
-                    count={count}
-                    maxValue={maxValue}
-                    incrementCount={incrementCount}
-                    resetCount={resetCount}
-                    isDisableInc={isDisableInc}
-                    isDisableReset={isDisableReset}
-                    showSettings={showSettings}
-                />
-            }
-
-            {isSettingVisible &&
-                <Settings
-                    startValue={startValue}
-                    maxValue={maxValue}
-                    setMaxValueCallBack={setMaxValueCallBack}
-                    setStartValueCallBack={setStartValueCallBack}
-                    hideSettings={hideSettings}
-                />
-            }
-        </>
-
+            isSettingVisible
+            ?
+            <Settings
+                startValue={startValue}
+                maxValue={maxValue}
+                setMaxValueCallBack={setMaxValueCallBack}
+                setStartValueCallBack={setStartValueCallBack}
+                hideSettings={hideSettings}
+                isDisableSet={isDisableSet}
+                isStartValueCorrect={isStartValueCorrect}
+                isMaxValueCorrect={isMaxValueCorrect}
+            />
+            :
+            <MainView
+                count={count}
+                maxValue={maxValue}
+                incrementCount={incrementCount}
+                resetCount={resetCount}
+                isDisableInc={isDisableInc}
+                isDisableReset={isDisableReset}
+                showSettings={showSettings}
+            />
     );
 }
 

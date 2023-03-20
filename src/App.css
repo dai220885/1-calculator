@@ -1,7 +1,7 @@
 .App {
   background-color: #605e5e;
   width: 250px;
-  height: 150px;
+  height: 140px;
   border: 3px solid #70E4FB;
   border-radius: 5px;
   padding: 8px;
@@ -10,10 +10,12 @@
   margin-bottom: 5px;
 }
 
-
 .monitor {
   /*background-color: #605e5e;*/
-  background-color: #70E4FB;
+  /*background-color: #70E4FB;*/
+  /*background-color: #70E4FB;*/
+  color: #70E4FB;
+  background-color: #605e5e;
   width: 230px;
   height: 50px;
   border: 3px solid #70E4FB;
@@ -32,7 +34,8 @@
 
 .settingMonitor {
   /*background-color: #605e5e;*/
-  background-color: #70E4FB;
+  background-color: #605e5e;
+  color: #70E4FB;
   width: 230px;
   height: 50px;
   border: 3px solid #70E4FB;
@@ -59,6 +62,15 @@
   font-size: 15px;
 }
 
+.input {
+  background-color: #9fe0ee;
+  border-radius: 5px;
+}
+
+.errorInput {
+  background-color: #f16262;
+  /*border: 3px solid #b20322*/
+}
 .red {
   color: red;
   text-align: center;
@@ -101,7 +113,6 @@
   justify-items: center;
   /*align-items: center;*/
 }
-
 
 .set{
   /*width: 70px;*/
