@@ -6,13 +6,11 @@ type MonitorPropsType = {
 }
 
 export const Monitor = (props: MonitorPropsType) => {
-
     return (
         <div className={'value'}>
             <span>{props.count}</span>
         </div>
     )
-
 }
 
 
