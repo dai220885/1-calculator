@@ -11,7 +11,7 @@ export const settingsReducer = (state: boolean = initialState, action: settingsR
     }
 }
 
-type settingsReducerActionsType = IsSettingsVisibleActionType
+export type settingsReducerActionsType = IsSettingsVisibleActionType
 
 
 type IsSettingsVisibleActionType = ReturnType<typeof isSettingVisibleAC>

@@ -11,7 +11,7 @@ export const startValueReducer = (state: number = initialState, action: SetStart
     }
 }
 
-type SetStartValueActionType = ReturnType<typeof setStartValueAC>
+export type SetStartValueActionType = ReturnType<typeof setStartValueAC>
 
 export const setStartValueAC = (newStartValue: number) =>{
     return {
