@@ -1,21 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import {MainView} from './components/MainView';
-import {Settings} from './components/Settings';
+import {MainView} from 'components/MainView';
+import {Settings} from 'components/Settings';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from './store';
-import {isSettingVisibleAC} from './reducers/settingsReducer';
-import {setMaxValueAC} from './reducers/maxValueReducer';
-import {setStartValueAC} from './reducers/startValueReducer';
-import {incrementCountAC, resetCountAC} from './reducers/countReducer';
+import {AppRootStateType, useAppDispatch} from './store';
+import {isSettingVisibleAC} from 'reducers/settingsReducer';
+import {setMaxValueAC} from 'reducers/maxValueReducer';
+import {setStartValueAC} from 'reducers/startValueReducer';
+import {incCountTC, incrementCountAC, resetCountAC, setCountFromLSTC} from './reducers/countReducer';
 
 function AppWithRedux() {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const isSettingVisible = useSelector<AppRootStateType, boolean>(state => state.isSettingsVisible)
     const startValue = useSelector<AppRootStateType, number>(state => state.startValue)
     const maxValue = useSelector<AppRootStateType, number>(state => state.maxValue)
-    const count = useSelector<AppRootStateType, number>(state => state.count)
+    const count = useSelector<AppRootStateType, number>(state => state.count.currentValue)
     //переменные, которые дизейблят/раздизейбливают кнопки и проверяют корректность введенных значений startValue и maxValue
     const isDisableInc: boolean = count >= maxValue //!!!!! исправить на ===
     const isDisableReset: boolean = count === startValue
@@ -28,7 +28,7 @@ function AppWithRedux() {
     const hideSettings = () => dispatch(isSettingVisibleAC(false))
 
     //используем useEffect и localStorage, чтобы после перезагрузки странички сохранялось значение счетчика
-    //useEffect(() => {getFromLocalStorageHandler()}, []) //единожды, только при первой отрисовке странички, забираем из localStorage хранящиеся там значения и помещаем их в соответствующие useState-ы в качестве инициализационных значений
+    useEffect(() => {dispatch(setCountFromLSTC())}, []) //единожды, только при первой отрисовке странички, забираем из localStorage хранящиеся там значения и помещаем их в соответствующие useState-ы в качестве инициализационных значений
     //useEffect(() => setToLocalStorageHandler(), [count, startValue, maxValue])//при каждом изменении count, startValue или maxValue (в соответствующих useState-ах), помещаем в localStorage эти значения (count, startValue, maxValue)
     //колбэк для юзэффекта
     const setToLocalStorageHandler = () => {
@@ -52,19 +52,23 @@ function AppWithRedux() {
         //     //return newCount //если убрать setCount(newCount), а просто возвращать newCount, то эту функцию можно сразу поместить в useState в качестве инициализационного значения
         // }
     } //*/
+
+
     const setMaxValueCallBack = (newMaxValue: number) => dispatch(setMaxValueAC(newMaxValue))
     const setStartValueCallBack = (newStartValue: number) => dispatch(setStartValueAC(newStartValue))
     const incrementCount = () => {
         if (count < maxValue) {
             //const newCount = count + 1 //можно в setCount передать newCount, а можно сразу передать count+1
-            dispatch(incrementCountAC(count + 1))
+            //dispatch(incrementCountAC(count + 1))
+            dispatch(incCountTC(count + 1))
             //setCount(count => count+1) //можно также передать функцию, которая принимает старое значение и возвращает новое значение count
         }
     }
     const resetCount = () => dispatch(resetCountAC(startValue))
 
     return (
-            isSettingVisible
+
+        isSettingVisible
             ?
             <Settings
                 startValue={startValue}
