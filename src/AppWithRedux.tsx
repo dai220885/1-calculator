@@ -1,14 +1,15 @@
 import React, {useEffect} from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import {MainView} from 'components/MainView';
+import {MainView} from './components/MainView';
 import {Settings} from 'components/Settings';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType, useAppDispatch} from './store';
+import {useSelector} from 'react-redux';
+
 import {isSettingVisibleAC} from 'reducers/settingsReducer';
 import {setMaxValueAC} from 'reducers/maxValueReducer';
 import {setStartValueAC} from 'reducers/startValueReducer';
-import {incCountTC, incrementCountAC, resetCountAC, setCountFromLSTC} from './reducers/countReducer';
+import {incrementCountAC, resetCountAC} from 'reducers/countReducer';
+import {AppRootStateType, useAppDispatch} from 'store';
 
 function AppWithRedux() {
     const dispatch = useAppDispatch()
@@ -28,7 +29,9 @@ function AppWithRedux() {
     const hideSettings = () => dispatch(isSettingVisibleAC(false))
 
     //используем useEffect и localStorage, чтобы после перезагрузки странички сохранялось значение счетчика
-    useEffect(() => {dispatch(setCountFromLSTC())}, []) //единожды, только при первой отрисовке странички, забираем из localStorage хранящиеся там значения и помещаем их в соответствующие useState-ы в качестве инициализационных значений
+    //useEffect(() => {
+        //dispatch(setCountFromLSTC())
+   // }, []) //единожды, только при первой отрисовке странички, забираем из localStorage хранящиеся там значения и помещаем их в соответствующие useState-ы в качестве инициализационных значений
     //useEffect(() => setToLocalStorageHandler(), [count, startValue, maxValue])//при каждом изменении count, startValue или maxValue (в соответствующих useState-ах), помещаем в localStorage эти значения (count, startValue, maxValue)
     //колбэк для юзэффекта
     const setToLocalStorageHandler = () => {
@@ -60,7 +63,7 @@ function AppWithRedux() {
         if (count < maxValue) {
             //const newCount = count + 1 //можно в setCount передать newCount, а можно сразу передать count+1
             //dispatch(incrementCountAC(count + 1))
-            dispatch(incCountTC(count + 1))
+            dispatch(incrementCountAC(count + 1))
             //setCount(count => count+1) //можно также передать функцию, которая принимает старое значение и возвращает новое значение count
         }
     }
