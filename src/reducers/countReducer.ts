@@ -54,19 +54,19 @@ export const setCountFromLocalStorageAC = (valueFromLS: number) =>{
 
 //thunk:
 
-export const incCountTC = (count: number) => (dispatch: Dispatch, getState: ()=>AppRootStateType) => {
-    //можно из стейта взять текущее значение из стейта и передать его (увеличенное на 1) в localStorage и incrementCountAC
-    let currentValue = getState().count.currentValue
-    //а можно просто при диспатче incCountTC передать в качестве параметра (count + 1), где count - получен из useSelector-а
-    localStorage.setItem('count', JSON.stringify(count))
-    dispatch(incrementCountAC(count))
-
-}
-
-export const setCountFromLSTC = () => (dispatch: Dispatch,) => {
-    let valueCountAsString = localStorage.getItem('count')
-    valueCountAsString && dispatch(setCountFromLocalStorageAC(JSON.parse(valueCountAsString)))
-}
+// export const incCountTC = (count: number) => (dispatch: Dispatch, getState: ()=>AppRootStateType) => {
+//     //можно из стейта взять текущее значение из стейта и передать его (увеличенное на 1) в localStorage и incrementCountAC
+//     let currentValue = getState().count.currentValue
+//     //а можно просто при диспатче incCountTC передать в качестве параметра (count + 1), где count - получен из useSelector-а
+//     localStorage.setItem('count', JSON.stringify(count))
+//     dispatch(incrementCountAC(count))
+//
+// }
+//
+// export const setCountFromLSTC = () => (dispatch: Dispatch,) => {
+//     let valueCountAsString = localStorage.getItem('count')
+//     valueCountAsString && dispatch(setCountFromLocalStorageAC(JSON.parse(valueCountAsString)))
+// }
 
 
 //types:
